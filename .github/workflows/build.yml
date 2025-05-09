@@ -24,8 +24,6 @@ jobs:
     - uses: actions/checkout@v4
       id: checkout
     - name: Setup MSBuild (x64)
-      needs: checkout
-      if: always()
       id: setup_msbuild_path_x64
       uses: ./
       with:
