@@ -1,42 +1,15 @@
-name: "build-test-dev"
-on:
-  pull_request:
-    branches:
-      - dev
-    paths-ignore:
-      - '*.md'
-  push:
-    paths-ignore:
-      - '*.md'
-  workflow_dispatch:
-    branches:
-      - dev
-      - arm64
-      - master
-    paths-ignore:
-      - '*.md'
-  
-
+name: ASP.NET CI
+on: [push]
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
-    - uses: actions/checkout@v4
-      id: checkout
-    - name: Setup MSBuild (x64)
-      id: setup_msbuild_path_x64
-      with:
-        vs-prerelease: true
-        msbuild-architecture: 'x64'
+    - uses: actions/checkout@master
 
-    - name: echo msbuild path
-      run: |
-        echo "vswhere-path: ${{ steps.setup_msbuild_explicit.outputs.msbuildPath }}"
-        echo "PATH: ${{ steps.setup_msbuild_path.outputs.msbuildPath }}"
-        echo "ARM PATH: ${{ steps.setup_msbuild_path_arm.outputs.msbuildPath }}"
-        echo "ARM PATH: ${{ steps.setup_msbuild_path_x64.outputs.msbuildPath }}"
-        echo "Fallback: ${{ steps.setup_msbuild_fallback.outputs.msbuildPath }}"
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
 
-    - name: echo MSBuild
-      run: msbuild -version
-   
+    - name: MSBuild
+      working-directory: HelloWorldFrameworkTest
+      run: msbuild MyProject.csproj
