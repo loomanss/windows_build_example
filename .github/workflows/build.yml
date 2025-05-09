@@ -13,3 +13,9 @@ jobs:
     - name: Build app for release
       run: msbuild src\HelloWorldFrameworkTest.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
 
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: HelloWorld
+        path: "D:/a/windows_build_example/windows_build_example/src/bin/Release"
+
