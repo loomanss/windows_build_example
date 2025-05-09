@@ -13,11 +13,22 @@ jobs:
 
     # You can test your matrix by printing the current dotnet version
     - name: Display dotnet version
-      run: dotnet --version
-     
-    - name: Setup MSBuild Path
-      uses: warrenbuckley/Setup-MSBuild@v1
-       
+      run: |
+        dotnet --version
+        msbuild -version
+        echo "vswhere-path: ${{ steps.setup_msbuild_explicit.outputs.msbuildPath }}"
+        echo "PATH: ${{ steps.setup_msbuild_path.outputs.msbuildPath }}"
+        echo "ARM PATH: ${{ steps.setup_msbuild_path_arm.outputs.msbuildPath }}"
+        echo "ARM PATH: ${{ steps.setup_msbuild_path_x64.outputs.msbuildPath }}"
+        echo "Fallback: ${{ steps.setup_msbuild_fallback.outputs.msbuildPath }}"
+
+
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+      with:
+        msbuild-architecture: x64
+
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
      
@@ -27,8 +38,3 @@ jobs:
     - name: Build and Publish Web App
       run: msbuild HelloWorldFrameworkTest.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
  
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: published_webapp
-        path: bin\Release\Publish
