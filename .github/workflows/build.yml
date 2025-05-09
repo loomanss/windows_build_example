@@ -13,7 +13,10 @@ jobs:
     - name: Build app for release
       run: msbuild src\HelloWorldFrameworkTest.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
 
+
+  deploy:
     - name: Upload artifact
+      needs: build
       uses: actions/upload-artifact@v2
       with:
         name: HelloWorld
