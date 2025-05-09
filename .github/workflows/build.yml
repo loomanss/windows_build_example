@@ -10,7 +10,7 @@ jobs:
       - name: Build app for release
         run: msbuild src\HelloWorldFrameworkTest.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
 
- deploy:
+  deploy:
     runs-on: windows-latest
     steps:
       - name: Upload artifact
