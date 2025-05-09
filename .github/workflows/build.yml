@@ -8,7 +8,7 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Build app for release
-        run: msbuild src\HelloWorldFrameworkTest.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
+        run: msbuild src\HelloWorldFrameworkTest.csproj -t:pack -verbosity:diag -property:Configuration=Release
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
