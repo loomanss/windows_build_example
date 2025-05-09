@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Digipolis.helloworld</id>
+    <version>0.0.1</version>
+    <title>Digipolis Hello World</title>
+    <authors>Digipolis demo</authors>
+    <owners>Digipolis demo</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains an Hello World demo class</description>
+    <references>
+      <reference file="HelloWorldFrameworkTest.dll" />
+    </references>
+  </metadata>
+  <files>
+    <file src=".\src\bin\Release\*" target="lib\" />
+  </files>
+</package>
