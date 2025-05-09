@@ -11,7 +11,7 @@ jobs:
         with:
           nuget-version: '5.x'
       - name: nuget pack
-        run:  .\nuget.exe pack .\hello-world.nuspec 
+        run:  nuget pack .\hello-world.nuspec 
       - name: Build app for release
         run: msbuild src\HelloWorldFrameworkTest.csproj -t:pack -verbosity:diag -property:Configuration=Release
       - name: Upload artifact
