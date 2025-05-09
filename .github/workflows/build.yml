@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Upload artifact
-        needs: build
+        needs: [build]
         uses: actions/upload-artifact@v2
         with:
           name: HelloWorld
