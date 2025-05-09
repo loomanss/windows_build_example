@@ -6,8 +6,6 @@ on:
     paths-ignore:
       - '*.md'
   push:
-    branches:
-      - dev
     paths-ignore:
       - '*.md'
   workflow_dispatch:
