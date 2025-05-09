@@ -25,7 +25,6 @@ jobs:
       id: checkout
     - name: Setup MSBuild (x64)
       id: setup_msbuild_path_x64
-      uses: ./
       with:
         vs-prerelease: true
         msbuild-architecture: 'x64'
