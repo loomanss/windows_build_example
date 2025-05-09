@@ -15,8 +15,8 @@ jobs:
     needs: build
     steps:
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: HelloWorld
-          path: "D:/a/windows_build_example/windows_build_example/src/bin/Release"
+          path: "D:/a/windows_build_example/windows_build_example/src/bin/Release/"
 
