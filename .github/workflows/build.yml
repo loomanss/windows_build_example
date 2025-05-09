@@ -11,11 +11,17 @@ jobs:
     - uses: actions/checkout@v4
       name: Checkout Code
 
+    - name: Setup .NET 6.x
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '4.x'
+
+
     # You can test your matrix by printing the current dotnet version
     - name: Display dotnet version
       run: |
         dotnet --version
-        msbuild -version
+        # msbuild -version
         echo "vswhere-path: ${{ steps.setup_msbuild_explicit.outputs.msbuildPath }}"
         echo "PATH: ${{ steps.setup_msbuild_path.outputs.msbuildPath }}"
         echo "ARM PATH: ${{ steps.setup_msbuild_path_arm.outputs.msbuildPath }}"
@@ -23,18 +29,10 @@ jobs:
         echo "Fallback: ${{ steps.setup_msbuild_fallback.outputs.msbuildPath }}"
 
 
-
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v2
-      with:
-        msbuild-architecture: x64
-
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
-     
-    - name: Restore NuGet Packages
-      run: nuget restore HelloWorldFrameworkTest.sln
- 
-    - name: Build and Publish Web App
-      run: msbuild HelloWorldFrameworkTest.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+     - name: Install dependencies
+       run: dotnet restore
+     - name: Build
+       run: dotnet build --no-restore
+     - name: Test with the dotnet CLI
+       run: dotnet test --no-build
  
