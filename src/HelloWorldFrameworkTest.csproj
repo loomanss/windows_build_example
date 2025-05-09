@@ -12,7 +12,20 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+  </PropertyGroup>/
+
+
+ <PropertyGroup>
+    <PackageId>Digipolis.HelloWorld</PackageId>
+    <Version>0.0.1</Version>
+    <PackageTags>Digipolis;HelloWorld</PackageTags>
+    <Description>
+      This is a hello world package from digipolis
+    </Description>
   </PropertyGroup>
+
+
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -30,6 +43,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+<ItemGroup>
+  <!-- ... -->
+  <PackageReference Include="NuGet.Build.Tasks.Pack" Version="6.7.0" PrivateAssets="all" />
+  <!-- ... -->
+</ItemGroup>
+
   <ItemGroup>
     <Reference Include="System"/>
     
