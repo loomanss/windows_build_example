@@ -9,11 +9,6 @@ jobs:
         uses: microsoft/setup-msbuild@v2
       - name: Build app for release
         run: msbuild src\HelloWorldFrameworkTest.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    steps:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
