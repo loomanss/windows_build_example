@@ -10,10 +10,10 @@ jobs:
       - uses: nuget/setup-nuget@v2
         with:
           nuget-version: '5.x'
-      - name: nuget pack
-        run:  nuget pack .\hello-world.nuspec 
       - name: Build app for release
         run: msbuild src\HelloWorldFrameworkTest.csproj -t:pack -verbosity:diag -property:Configuration=Release
+      - name: nuget pack
+        run:  nuget pack .\hello-world.nuspec 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
