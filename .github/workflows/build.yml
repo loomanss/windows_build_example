@@ -4,17 +4,19 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v2
-    - name: Build app for release
-      run: msbuild src\HelloWorldFrameworkTest.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
+      - uses: actions/checkout@v4
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+      - name: Build app for release
+        run: msbuild src\HelloWorldFrameworkTest.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
 
  deploy:
-    - name: Upload artifact
-      needs: build
-      uses: actions/upload-artifact@v2
-      with:
-        name: HelloWorld
-        path: "D:/a/windows_build_example/windows_build_example/src/bin/Release"
+    runs-on: windows-latest
+    steps:
+      - name: Upload artifact
+        needs: build
+        uses: actions/upload-artifact@v2
+        with:
+          name: HelloWorld
+          path: "D:/a/windows_build_example/windows_build_example/src/bin/Release"
 
